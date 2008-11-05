@@ -17,12 +17,6 @@ design0=.
 FLOW_TYPE=HDL
 LANGUAGE=VHDL
 
-[file_out:/readWriteSPIWireData.asf]
-/\compile\readWriteSPIWireData.v=-1
-
-[file_out:/initSD.asf]
-/\compile\initSD.v=-1
-
 [Files]
 /readWriteSPIWireData.asf=-1
 /initSD.asf=-1
@@ -37,6 +31,9 @@ LANGUAGE=VHDL
 .\src\readWriteSDBlock.asf=State Diagram
 .\src\spiCtrl.asf=State Diagram
 
+[file_out:/initSD.asf]
+/\compile\initSD.v=-1
+
 [file_out:/sendCmd.asf]
 /\compile\sendCmd.v=-1
 
@@ -45,4 +42,7 @@ LANGUAGE=VHDL
 
 [file_out:/spiCtrl.asf]
 /\compile\spiCtrl.v=-1
+
+[file_out:/readWriteSPIWireData.asf]
+/\compile\readWriteSPIWireData.v=-1
 

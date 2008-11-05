@@ -5,8 +5,14 @@
 //               fifo related modules to avoid conflict with other IP cores.
 // Version 1.1 - 23rd August 2008. Modified reset synchronisation. Fixed bug
 //               in wb_ack. Fixed file headers, and added description
+// Version 1.2 - 25th October 2008. Modified readWriteSPIWireData to clock data
+//               from the SPI bus on the rising edge of SCLK. This increases the
+//               tsetup timing margin when reading SPI data. It turns out that the timing
+//               was marginal for some SD cards when using a 24Mhz SPI clock.
+//               Problem was exacerbated by the fact that the design prevents the 
+//               final SPI interface Flipflops being pushed into the IO blocks.
 
-`define SPI_MASTER_VERSION_NUM 8'h11
+`define SPI_MASTER_VERSION_NUM 8'h12
 `define SPI_SYS_CLK_48MHZ
 //`define SPI_SYS_CLK_30MHZ
 

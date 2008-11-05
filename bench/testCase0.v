@@ -82,6 +82,12 @@ begin
   #100000;
   testHarness.u_sdModel.setRespByte(8'h05); //write response
   #8000000;
+  #8000000;
+  #8000000;
+  #8000000;
+  #8000000;
+  #8000000;
+  #8000000;
   testHarness.u_wb_master_model.wb_read(1, `CTRL_STS_REG_BASE+`TRANS_STS_REG , dataRead);
   if (dataRead[0] == `TRANS_BUSY) begin
     $write("---- ERROR: SD block write failed to complete\n");
@@ -101,6 +107,12 @@ begin
   testHarness.u_wb_master_model.wb_write(1, `CTRL_STS_REG_BASE+`TRANS_CTRL_REG , {7'b0000000, `TRANS_START});
   #100000;
   testHarness.u_sdModel.setRespByte(8'hfe); //read response
+  #8000000;
+  #8000000;
+  #8000000;
+  #8000000;
+  #8000000;
+  #8000000;
   #8000000;
   testHarness.u_wb_master_model.wb_read(1, `CTRL_STS_REG_BASE+`TRANS_STS_REG , dataRead);
   if (dataRead[0] == `TRANS_BUSY) begin

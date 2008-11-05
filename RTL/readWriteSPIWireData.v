@@ -96,7 +96,7 @@ reg [1:0]CurrState_rwSPISt, NextState_rwSPISt;
 // Machine: rwSPISt
 
 // NextState logic (combinatorial)
-always @ (txDataFull or txDataIn or clkDelayCnt or clkDelay or txDataShiftReg or bitCnt or rxDataShiftReg or spiDataIn or rxDataRdySet or txDataEmpty or txDataFullClr or spiClkOut or spiDataOut or rxDataOut or CurrState_rwSPISt)
+always @ (txDataFull or txDataIn or clkDelayCnt or clkDelay or txDataShiftReg or rxDataShiftReg or spiDataIn or bitCnt or rxDataRdySet or txDataEmpty or txDataFullClr or spiClkOut or spiDataOut or rxDataOut or CurrState_rwSPISt)
 begin
   NextState_rwSPISt <= CurrState_rwSPISt;
   // Set default values for outputs and signals
@@ -137,6 +137,7 @@ begin
         next_spiClkOut <= 1'b0;
         next_spiDataOut <= txDataShiftReg[7];
         next_txDataShiftReg <= {txDataShiftReg[6:0], 1'b0};
+        next_rxDataShiftReg <= {rxDataShiftReg[6:0], spiDataIn};
         next_clkDelayCnt <= 8'h00;
       end
     end
@@ -165,7 +166,6 @@ begin
         next_spiClkOut <= 1'b1;
         next_bitCnt <= bitCnt + 1'b1;
         next_clkDelayCnt <= 8'h00;
-        next_rxDataShiftReg <= {rxDataShiftReg[6:0], spiDataIn};
       end
     end
     `ST_RW_WIRE:

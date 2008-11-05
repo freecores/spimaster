@@ -9,15 +9,15 @@ FREEOID=95
 "LIBRARIES=//////////////////////////////////////////////////////////////////////\n////                                                              ////\n//// readWriteSPIWireData.v                      ////\n////                                                              ////\n//// This file is part of the spiMaster opencores effort.\n//// <http://www.opencores.org/cores//>                           ////\n////                                                              ////\n//// Module Description:                                          ////\n//// Wait for TX data bytes. When data is ready generate\n////  SPI TX data, SPI CLK, and read SPI RX data\n//// \n////                                                              ////\n//// To Do:                                                       ////\n//// \n////                                                              ////\n//// Author(s):                                                   ////\n//// - Steve Fielding, sfielding@base2designs.com                 ////\n////                                                              ////\n//////////////////////////////////////////////////////////////////////\n////                                                              ////\n//// Copyright (C) 2004 Steve Fielding and OPENCORES.ORG          ////\n////                                                              ////\n//// This source file may be used and distributed without         ////\n//// restriction provided that this copyright statement is not    ////\n//// removed from the file and that any derivative work contains  ////\n//// the original copyright notice and the associated disclaimer. ////\n////                                                              ////\n//// This source file is free software; you can redistribute it   ////\n//// and/or modify it under the terms of the GNU Lesser General   ////\n//// Public License as published by the Free Software Foundation; ////\n//// either version 2.1 of the License, or (at your option) any   ////\n//// later version.                                               ////\n////                                                              ////\n//// This source is distributed in the hope that it will be       ////\n//// useful, but WITHOUT ANY WARRANTY; without even the implied   ////\n//// warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR      ////\n//// PURPOSE. See the GNU Lesser General Public License for more  ////\n//// details.                                                     ////\n////                                                              ////\n//// You should have received a copy of the GNU Lesser General    ////\n//// Public License along with this source; if not, download it   ////\n//// from <http://www.opencores.org/lgpl.shtml>                   ////\n////                                                              ////\n//////////////////////////////////////////////////////////////////////\n//\n`include \"timescale.v\"\n`include \"spiMaster_defines.v\"\n"
 END
 BUNDLES
-B T "Declarations" 0,0,255 0 0 1 255,255,255 0 3125 0 0000 1  "Arial" 0
-B T "Conditions" 0,0,0 0 0 0 255,255,255 0 3125 0 0110 1  "Arial" 0
+B T "Declarations" 0,0,255 0 0 1 255,255,255 0 2844 0 0000 1  "Arial" 0
+B T "Conditions" 0,0,0 0 0 0 255,255,255 0 2844 0 0110 1  "Arial" 0
 B F "States" 0,0,0 0 0 1 0,255,0 1 3527 1480 0000 1  "Arial" 0
-B T "Actions" 0,0,0 0 0 1 255,255,255 0 3125 0 0000 1  "Arial" 0
-B T "Labels" 0,0,0 0 0 0 255,255,255 0 3125 0 0000 1  "Arial" 0
+B T "Actions" 0,0,0 0 0 1 255,255,255 0 2844 0 0000 1  "Arial" 0
+B T "Labels" 0,0,0 0 0 0 255,255,255 0 2844 0 0000 1  "Arial" 0
 B L "Transitions" 0,0,0 0 0 1 0,0,0 1 3527 1480 0000 1  "Arial" 0
 B F "Ports" 0,0,0 0 0 1 0,255,255 1 3527 1480 0000 1  "Arial" 0
 B L "Errors" 255,0,0 0 3 1 255,255,255 1 3527 1480 0000 1  "Arial" 0
-B T "State Labels" 0,0,0 0 0 0 255,255,255 0 3125 0 0000 1  "Arial" 4
+B T "State Labels" 0,0,0 0 0 0 255,255,255 0 2844 0 0000 1  "Arial" 4
 B F "Current State" 255,255,0 0 0 1 255,255,0 1 3527 1480 0000 1  "Arial" 0
 B T "Comments" 157,157,157 0 0 1 255,255,255 0 3527 1480 0000 1  "Arial" 0
 B L "Info" 0,255,0 0 3 1 255,255,255 1 3527 1480 0000 1  "Arial" 0
@@ -67,7 +67,7 @@ I 32 0 130 Builtin Signal | 82178,269538 "" ""
 L 33 34 0 TEXT "State Labels" | 112064,143714 1 0 0 "CLK_LO\n/2/"
 S 34 6 8192 ELLIPSE "States" | 112064,143714 6500 6500
 W 35 6 0 21 34 BEZIER "Transitions" | 111477,182571 110721,178461 111926,154930 111406,150180
-A 36 35 16 TEXT "Actions" | 117201,173770 1 0 0 "spiClkOut <= 1'b0;\nspiDataOut <= txDataShiftReg[7];\ntxDataShiftReg <= {txDataShiftReg[6:0], 1'b0};\nclkDelayCnt <= 8'h00;"
+A 36 35 16 TEXT "Actions" | 117201,173770 1 0 0 "spiClkOut <= 1'b0;\nspiDataOut <= txDataShiftReg[7];\ntxDataShiftReg <= {txDataShiftReg[6:0], 1'b0};\nrxDataShiftReg <= {rxDataShiftReg[6:0], spiDataIn};\nclkDelayCnt <= 8'h00;"
 A 40 34 4 TEXT "Actions" | 129744,145618 1 0 0 "clkDelayCnt <= clkDelayCnt + 1'b1;"
 C 41 39 0 TEXT "Conditions" | 113864,136917 1 0 0 "bitCnt == 4'h8"
 W 39 6 1 34 57 BEZIER "Transitions" | 112175,137251 112384,130999 112714,101841 111797,94879
@@ -75,7 +75,7 @@ W 50 6 2 34 21 BEZIER "Transitions" | 108826,149348 101042,157950 83708,154801 8
                                       77884,168870 77971,186684 79172,191015 80374,195346\
                                       85000,196884 88570,197360 92140,197836 101831,194594\
                                       106220,191507
-A 51 50 16 TEXT "Actions" | 41615,180095 1 0 0 "spiClkOut <= 1'b1;\nbitCnt <= bitCnt + 1'b1;\nclkDelayCnt <= 8'h00;\nrxDataShiftReg <= {rxDataShiftReg[6:0], spiDataIn};"
+A 51 50 16 TEXT "Actions" | 64275,179271 1 0 0 "spiClkOut <= 1'b1;\nbitCnt <= bitCnt + 1'b1;\nclkDelayCnt <= 8'h00;"
 C 52 50 0 TEXT "Conditions" | 69697,159224 1 0 0 "clkDelayCnt == clkDelay"
 A 53 21 4 TEXT "Actions" | 129906,194545 1 0 0 "clkDelayCnt <= clkDelayCnt + 1'b1;\ntxDataFullClr <= 1'b0;\nrxDataRdySet <= 1'b0;"
 C 54 35 0 TEXT "Conditions" | 112616,182259 1 0 0 "clkDelayCnt == clkDelay"
